@@ -2,6 +2,6 @@ FactoryBot.define do
   factory :guardia do
     hora { 1 }
     fecha { "MyString" }
-    contrato { nil }
+    proyecto_id { nil }
   end
 end

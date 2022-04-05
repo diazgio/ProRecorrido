@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :guardian do
-    nombre { "MyString" }
+    nombre { Faker::Lorem.sentence }
   end
 end

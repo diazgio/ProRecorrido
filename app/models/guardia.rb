@@ -1,4 +1,5 @@
 class Guardia < ApplicationRecord
-  belongs_to :contrato
-  has_many :guardians
+  belongs_to :proyecto
+  has_many :disponibilidads
+  has_many :confirmaciones, through: :disponibilidad
 end

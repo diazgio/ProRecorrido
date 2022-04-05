@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :contrato do
-    nombre_emp { Faker::Lorem.sentence }
+    proyecto_id { nil }
+    guardian_id { nil }
   end
 end

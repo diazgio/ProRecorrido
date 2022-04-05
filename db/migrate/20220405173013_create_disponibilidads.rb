@@ -3,7 +3,7 @@ class CreateDisponibilidads < ActiveRecord::Migration[7.0]
     create_table :disponibilidads do |t|
       t.integer :hora
       t.string :fecha
-      t.references :guardian, null: false, foreign_key: true
+      t.references :persons, null: false, foreign_key: true, index: true
 
       t.timestamps
     end
