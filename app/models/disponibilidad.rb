@@ -1,6 +1,9 @@
 class Disponibilidad < ApplicationRecord
   belongs_to :contrato
   belongs_to :worker
-  has_many :guardias
-  has_many :confirmaciones, through: :guardias
+
+  validates :hora, presence: true
+  validates :fecha, presence: true
+  validates :semana, presence: true
+  validates :year, presence: true
 end

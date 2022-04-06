@@ -1,7 +1,12 @@
 FactoryBot.define do
   factory :disponibilidad do
     hora { 1 }
-    fecha { "MyString" }
-    guardian_id { nil }
+    fecha { 0 }
+    worker_id { nil }
+    contrato_id { nil }
+    valor { false }
+    semana { 10 }
+    year { 2022 }
+    confirmed { false }
   end
 end

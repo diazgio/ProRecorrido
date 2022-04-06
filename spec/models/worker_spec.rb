@@ -9,4 +9,24 @@ RSpec.describe Worker, type: :model do
       updated_at: nil
     )}
   end
+
+  describe 'relations' do
+    it 'has many question disponibilidads' do
+      relation = described_class.reflect_on_association(:disponibilidads)
+      expect(relation.macro).to eq :has_many
+    end
+
+    it "should have many contratos" do
+      subject { described_class.new }
+      assc = described_class.reflect_on_association(:contratos)
+      expect(assc.macro).to eq :has_and_belongs_to_many
+    end
+  end
+
+  describe 'validations' do
+    it "is not valid without a nombre" do
+      worker = Worker.new(nombre: nil)
+      expect(worker).to_not be_valid
+    end
+  end
 end

@@ -14,22 +14,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_06_021620) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "confirmaciones", force: :cascade do |t|
-    t.bigint "guardia_id", null: false
-    t.bigint "disponibilidad_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["disponibilidad_id"], name: "index_confirmaciones_on_disponibilidad_id"
-    t.index ["guardia_id"], name: "index_confirmaciones_on_guardia_id"
-  end
-
   create_table "contratos", force: :cascade do |t|
     t.bigint "proyecto_id", null: false
-    t.bigint "workers_id", null: false
+    t.bigint "worker_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["proyecto_id"], name: "index_contratos_on_proyecto_id"
-    t.index ["workers_id"], name: "index_contratos_on_workers_id"
+    t.index ["worker_id"], name: "index_contratos_on_worker_id"
   end
 
   create_table "contratos_workers", id: false, force: :cascade do |t|
@@ -42,7 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_06_021620) do
   create_table "disponibilidads", force: :cascade do |t|
     t.integer "hora"
     t.integer "fecha", default: 0, null: false
-    t.bigint "workers_id", null: false
+    t.bigint "worker_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "contrato_id"
@@ -51,16 +42,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_06_021620) do
     t.integer "year"
     t.boolean "confirmed", default: false
     t.index ["contrato_id"], name: "index_disponibilidads_on_contrato_id"
-    t.index ["workers_id"], name: "index_disponibilidads_on_workers_id"
-  end
-
-  create_table "guardia", force: :cascade do |t|
-    t.integer "hora"
-    t.integer "fecha", default: 0, null: false
-    t.bigint "proyecto_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["proyecto_id"], name: "index_guardia_on_proyecto_id"
+    t.index ["worker_id"], name: "index_disponibilidads_on_worker_id"
   end
 
   create_table "proyectos", force: :cascade do |t|
@@ -75,10 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_06_021620) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "confirmaciones", "disponibilidads"
-  add_foreign_key "confirmaciones", "guardia", column: "guardia_id"
   add_foreign_key "contratos", "proyectos"
-  add_foreign_key "contratos", "workers", column: "workers_id"
-  add_foreign_key "disponibilidads", "workers", column: "workers_id"
-  add_foreign_key "guardia", "proyectos"
+  add_foreign_key "contratos", "workers"
+  add_foreign_key "disponibilidads", "workers"
 end
