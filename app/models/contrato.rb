@@ -1,4 +1,5 @@
 class Contrato < ApplicationRecord
   belongs_to :proyecto
-  belongs_to :person
+  has_many :disponibilidads
+  has_and_belongs_to_many :workers
 end
