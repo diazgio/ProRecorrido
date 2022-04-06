@@ -29,7 +29,8 @@ class Api::V1::WorkersController < ApplicationController
   end
 
   private
-    def worker_params
-      params.require(:worker).permit(:nombre)
-    end
+  
+  def worker_params
+    params.require(:worker).permit(:nombre)
+  end
 end
