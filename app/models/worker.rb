@@ -1,6 +1,7 @@
 class Worker < ApplicationRecord
   has_many :disponibilidads
-  has_and_belongs_to_many :contratos
+  has_many :contrato_workers
+  has_many :contratos, through: :contrato_workers
 
   validates :nombre, presence: true
 end
