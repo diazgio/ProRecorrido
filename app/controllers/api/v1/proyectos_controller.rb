@@ -4,6 +4,10 @@ class Api::V1::ProyectosController < ApplicationController
     render json: @proyectos
   end
 
+  def show
+    render json: @proyecto
+  end
+
   def create
     @proyecto = Proyecto.create(proyecto_params)
     if @proyecto.valid?

@@ -4,7 +4,7 @@ class Api::V1::ContratosController < ApplicationController
   end
 
   def create
-    @Proyectos = Proyecto.all
+    @proyectos = Proyecto.all
     @contrato = Contrato.create(contratos_params)
     if @contrato.valid?
       render json: @contrato, status: :created
