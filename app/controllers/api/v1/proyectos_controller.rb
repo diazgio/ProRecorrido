@@ -11,7 +11,7 @@ class Api::V1::ProyectosController < ApplicationController
   def create
     @proyecto = Proyecto.create(proyecto_params)
     if @proyecto.valid?
-      render json: @proyecto, status: :created
+      render json: @proyecto, status: :created, location: api_v1_proyectos_path(@proyecto)
     else
       render json: @proyecto.errors, status: :unprocessable_entity
     end

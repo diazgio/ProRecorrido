@@ -4,9 +4,10 @@ class Api::V1::ContratosController < ApplicationController
   end
 
   def create
-    @proyectos = Proyecto.all
     @contrato = Contrato.create(contratos_params)
+    @contrato.proyecto_id = params[:proyecto_id]
     if @contrato.valid?
+      @contrato.ejemplo
       render json: @contrato, status: :created
     else
       render json: @contrato.errors, status: :unprocessable_entity
@@ -31,6 +32,10 @@ class Api::V1::ContratosController < ApplicationController
   private
 
   def contratos_params
-    params.require(:contrato).permit(:duration, :start_hour, :end_hour, :proyecto_id, workers_attributes: [:id, :nombre])
+    params.require(:contrato).permit(:duration, :start_hour, :end_hour, workers_attributes: [:id, :nombre])
+  end
+
+  def ejemplo
+    metodo_del_modelo
   end
 end

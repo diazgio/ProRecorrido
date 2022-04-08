@@ -7,7 +7,7 @@ class Api::V1::WorkersController < ApplicationController
   def create
     @worker = Worker.create(worker_params)
     if @worker.valid?
-      render json: @worker, status: :created
+      render json: @worker, status: :created, location: api_v1_workers_path(@worker)
     else
       render json: @worker.errors, status: :unprocessable_entity
     end
