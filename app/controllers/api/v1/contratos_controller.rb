@@ -4,10 +4,20 @@ class Api::V1::ContratosController < ApplicationController
   end
 
   def create
-    @contrato = Contrato.create(contratos_params)
-    @contrato.proyecto_id = params[:proyecto_id]
+    @contrato = Contrato.create(
+      proyecto_id: params[:proyecto_id],
+      duration: params[:duration],
+      start_hour: params[:start_hour],
+      end_hour: params[:end_hour],
+      num_sem: params[:num_sem]
+    )
+    workers =  params[:workers_attributes]
+    workers.each do |worker_id|
+      worker = Worker.where(id: worker_id)
+      @contrato.workers << worker
+    end
+
     if @contrato.valid?
-      @contrato.ejemplo
       render json: @contrato, status: :created
     else
       render json: @contrato.errors, status: :unprocessable_entity
@@ -31,11 +41,4 @@ class Api::V1::ContratosController < ApplicationController
 
   private
 
-  def contratos_params
-    params.require(:contrato).permit(:duration, :start_hour, :end_hour, workers_attributes: [:id, :nombre])
-  end
-
-  def ejemplo
-    metodo_del_modelo
-  end
 end

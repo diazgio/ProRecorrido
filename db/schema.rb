@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_06_225708) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_09_171125) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,6 +30,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_06_225708) do
     t.integer "duration", default: 0
     t.integer "start_hour", default: [], array: true
     t.integer "end_hour", default: [], array: true
+    t.integer "num_sem", default: 1
     t.index ["proyecto_id"], name: "index_contratos_on_proyecto_id"
   end
 
