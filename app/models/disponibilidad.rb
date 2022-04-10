@@ -6,6 +6,4 @@ class Disponibilidad < ApplicationRecord
 
   validates :hora, presence: true
   validates :fecha, presence: true
-  validates :semana, presence: true
-  validates :year, presence: true
 end

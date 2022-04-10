@@ -7,19 +7,24 @@ class Contrato < ApplicationRecord
 
   after_create :crear_disponibilidads
 
+
   def crear_disponibilidads
+    cantidad_horas = self.start_hour.each_with_index.map{|val, index| self.end_hour[index] - val }
+    
     self.workers.each do |worker|
       self.start_hour.each_with_index do |hour,index|
-        Disponibilidad.create(
-          hora: hour,
-          fecha: index,
-          worker_id: worker.id,
-          contrato_id: self.id,
-          valor: false,
-          semana: nil,
-          year: nil,
-          confirmed: false
-        )
+        cantidad_horas[index].times do |n|
+          Disponibilidad.create(
+            hora: hour + n,
+            fecha: index,
+            worker_id: worker.id,
+            contrato_id: self.id,
+            valor: false,
+            semana: nil,
+            year: nil,
+            confirmed: false
+          )
+        end
       end
     end
   end

@@ -16,7 +16,7 @@ class Api::V1::ContratosController < ApplicationController
       worker = Worker.where(id: worker_id)
       @contrato.workers << worker
     end
-
+    @contrato.crear_disponibilidads
     if @contrato.valid?
       render json: @contrato, status: :created
     else
