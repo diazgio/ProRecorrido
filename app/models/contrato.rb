@@ -5,8 +5,7 @@ class Contrato < ApplicationRecord
   has_many :contrato_workers
   has_many :workers, through: :contrato_workers
 
-  after_create :crear_disponibilidads
-
+  scope :contratos_ordenados, -> { order(created_at: :desc).includes(:proyecto) }
 
   def crear_disponibilidads
     cantidad_horas = self.start_hour.each_with_index.map{|val, index| self.end_hour[index] - val }

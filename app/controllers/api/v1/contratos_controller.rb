@@ -1,6 +1,7 @@
 class Api::V1::ContratosController < ApplicationController
   def index
-    @contratos = Contrato.all
+    @contratos = Contrato.contratos_ordenados
+    render json: @contratos
   end
 
   def create
@@ -9,7 +10,8 @@ class Api::V1::ContratosController < ApplicationController
       duration: params[:duration],
       start_hour: params[:start_hour],
       end_hour: params[:end_hour],
-      num_sem: params[:num_sem]
+      num_sem: params[:num_sem],
+      nombre_c: params[:nombre_c]
     )
     workers =  params[:workers_attributes]
     workers.each do |worker_id|
