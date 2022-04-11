@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 require 'factory_bot_rails'
 
-worker_1 = Worker.create(nombre: 'Pedro')
-worker_2 =Worker.create(nombre: 'Mariana')
-worker_3 =Worker.create(nombre: 'Felipe')
+Worker.create(nombre: 'Pedro')
+Worker.create(nombre: 'Mariana')
+Worker.create(nombre: 'Felipe')
 
-
-proyecto_1 = Proyecto.create(nombre_empresa: 'Recorrido')
-proyecto_2 = Proyecto.create(nombre_empresa: 'Movistar')
+Proyecto.create(nombre_empresa: 'Recorrido')
+Proyecto.create(nombre_empresa: 'Movistar')

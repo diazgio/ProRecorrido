@@ -1,6 +1,10 @@
-require_relative "boot"
+# frozen_string_literal: true
+# rubocop:disable Layout/EmptyLineAfterMagicComment
+# rubocop:disable Style/Documentation
 
-require "rails/all"
+require_relative 'boot'
+
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -25,3 +29,5 @@ module ProRecorrido
     config.api_only = true
   end
 end
+# rubocop:enable Layout/EmptyLineAfterMagicComment
+# rubocop:enable Style/Documentation

@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+# rubocop:disable Layout/EmptyLineAfterMagicComment
+# rubocop:disable Style/Documentation
+
 class CreateContratoWorkers < ActiveRecord::Migration[7.0]
   def change
     create_table :contrato_workers do |t|
@@ -8,3 +12,5 @@ class CreateContratoWorkers < ActiveRecord::Migration[7.0]
     end
   end
 end
+# rubocop:enable Layout/EmptyLineAfterMagicComment
+# rubocop:enable Style/Documentation

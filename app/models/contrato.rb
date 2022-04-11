@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+# rubocop:disable Layout/EmptyLineAfterMagicComment
+# rubocop:disable Style/Documentation
+
 class Contrato < ApplicationRecord
   belongs_to :proyecto
 
@@ -6,18 +10,19 @@ class Contrato < ApplicationRecord
   has_many :workers, through: :contrato_workers
 
   scope :contratos_ordenados, -> { order(created_at: :desc).includes(:proyecto) }
-
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/MethodLength
   def crear_disponibilidads
-    cantidad_horas = self.start_hour.each_with_index.map{|val, index| self.end_hour[index] - val }
-    
-    self.workers.each do |worker|
-      self.start_hour.each_with_index do |hour,index|
+    cantidad_horas = start_hour.each_with_index.map { |val, index| end_hour[index] - val }
+
+    workers.each do |worker|
+      start_hour.each_with_index do |hour, index|
         cantidad_horas[index].times do |n|
           Disponibilidad.create(
             hora: hour + n,
             fecha: index,
             worker_id: worker.id,
-            contrato_id: self.id,
+            contrato_id: id,
             valor: false,
             semana: nil,
             year: nil,
@@ -27,4 +32,8 @@ class Contrato < ApplicationRecord
       end
     end
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/MethodLength
 end
+# rubocop:enable Layout/EmptyLineAfterMagicComment
+# rubocop:enable Style/Documentation

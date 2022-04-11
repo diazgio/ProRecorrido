@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+# rubocop:disable Layout/EmptyLineAfterMagicComment
+# rubocop:disable Style/Documentation
 class CreateDisponibilidads < ActiveRecord::Migration[7.0]
   def change
     create_table :disponibilidads do |t|
@@ -9,3 +12,5 @@ class CreateDisponibilidads < ActiveRecord::Migration[7.0]
     end
   end
 end
+# rubocop:enable Layout/EmptyLineAfterMagicComment
+# rubocop:enable Style/Documentation

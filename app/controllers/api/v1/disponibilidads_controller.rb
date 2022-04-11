@@ -1,19 +1,24 @@
-class Api::V1::DisponibilidadsController < ApplicationController
+# frozen_string_literal: true
+# rubocop:disable Layout/EmptyLineAfterMagicComment
+# rubocop:disable Style/Documentation
 
-  def index
-    @disponibilidads = Disponibilidad.includes(:contrato).where(contrato_id: params[:contrato_id])
-    @workers = Contrato.find(params[:contrato_id]).workers
+module Api
+  module V1
+    class DisponibilidadsController < ApplicationController
+      def index
+        @disponibilidads = Disponibilidad.includes(:contrato).where(contrato_id: params[:contrato_id])
+        @workers = Contrato.find(params[:contrato_id]).workers
 
-    @data = { 
-      "disponibilidads" => @disponibilidads,
-      "workers" => @workers
-    }
-    render json: @data
+        @data = {
+          'disponibilidads' => @disponibilidads,
+          'workers' => @workers
+        }
+        render json: @data
+      end
+
+      def update; end
+    end
   end
-
-  def update
-
-  end
-
-
 end
+# rubocop:enable Style/Documentation
+# rubocop:enable Layout/EmptyLineAfterMagicComment

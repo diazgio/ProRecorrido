@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+# rubocop:disable Layout/EmptyLineAfterMagicComment
+# rubocop:disable Style/Documentation
+
 class CreateContratos < ActiveRecord::Migration[7.0]
   def change
     create_table :contratos do |t|
@@ -7,3 +11,5 @@ class CreateContratos < ActiveRecord::Migration[7.0]
     end
   end
 end
+# rubocop:enable Layout/EmptyLineAfterMagicComment
+# rubocop:enable Style/Documentation

@@ -1,13 +1,17 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Proyecto, type: :model do
   describe 'attributes' do
-    it { is_expected.to have_attributes(
-      id: nil,
-      nombre_empresa: nil,
-      created_at: nil,
-      updated_at: nil
-    )}
+    it {
+      is_expected.to have_attributes(
+        id: nil,
+        nombre_empresa: nil,
+        created_at: nil,
+        updated_at: nil
+      )
+    }
   end
 
   describe 'relations' do
@@ -18,7 +22,7 @@ RSpec.describe Proyecto, type: :model do
   end
 
   describe 'validations' do
-    it "is not valid without a nombre de empresa" do
+    it 'is not valid without a nombre de empresa' do
       proyecto = Proyecto.new(nombre_empresa: nil)
       expect(proyecto).to_not be_valid
     end
